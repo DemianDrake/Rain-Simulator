@@ -9,23 +9,28 @@ render_priority = 1
 shader = ExtResource( 1 )
 shader_param/max_height = 20.0
 shader_param/gravity = 0.0
-shader_param/amount = 50000.0
+shader_param/init_vel = null
+shader_param/amount = 0.0
 
 [sub_resource type="CapsuleMesh" id=2]
 material = ExtResource( 2 )
 radius = 0.05
 mid_height = 0.01
-rings = 6
+rings = 1
 
 [sub_resource type="PlaneMesh" id=3]
 size = Vector2( 50, 50 )
 
 [node name="Spatial" type="Spatial"]
 script = ExtResource( 3 )
+max_amount = 100000
+init_vel = 20.0
 
 [node name="Rain" type="Particles" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
-amount = 50000
+emitting = false
+amount = 20000
+preprocess = 0.05
 visibility_aabb = AABB( -25, -25, -25, 50, 50, 50 )
 process_material = SubResource( 1 )
 draw_pass_1 = SubResource( 2 )

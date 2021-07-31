@@ -1,9 +1,10 @@
 shader_type particles;
 render_mode keep_data;
 
-uniform float max_height = 10.0;
+uniform float max_height;
 uniform float gravity;
-uniform float amount = 50000.0;
+uniform float init_vel;
+uniform float amount;
 
 float rand_from_seed(in uint seed) {
   int k;
@@ -27,12 +28,13 @@ uint hash(uint x) {
 
 void vertex() {
   if (RESTART) {
-    //Initialization code goes here
-	if (INDEX >= int(amount / (5.0 * TIME + 1.0))) {
-		ACTIVE = true;
-	} else {
-		ACTIVE = false;
-	}
+    //Initialization code goes here	
+	
+//	if (TIME < 5.0 && INDEX > int(TIME * amount / 5.0)) {
+//		ACTIVE = false
+//	} else {
+//		ACTIVE = true
+//	}
 	
 	uint alt_seed1 = hash(NUMBER + uint(1) + RANDOM_SEED);
 	uint alt_seed2 = hash(NUMBER + uint(27) + RANDOM_SEED);
@@ -44,14 +46,11 @@ void vertex() {
 	                     rand_from_seed(alt_seed3) * 2.0 - 1.0);
 	
 	TRANSFORM[3].xy = position.xy * 20.0;
-	TRANSFORM[3].z = max_height * -1.0 + (rand_from_seed(alt_seed4) * 2.0 - 1.0);
+	TRANSFORM[3].z = max_height * -1.0 + (rand_from_seed(alt_seed4) * 5.0 - 1.0);
 	
-	VELOCITY.z = 0.0;
+	VELOCITY.z = init_vel;
   } else {
     //per-frame code goes here
 	VELOCITY.z += DELTA * gravity;
-	if (TRANSFORM[3].z >= 0.0) {
-		ACTIVE = false;
-	}
   }
 }
