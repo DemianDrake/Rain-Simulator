@@ -1,7 +1,6 @@
 shader_type particles;
-render_mode keep_data;
 
-uniform float max_height;
+uniform float height;
 uniform float gravity;
 uniform float init_vel;
 uniform float amount;
@@ -30,10 +29,10 @@ void vertex() {
   if (RESTART) {
     //Initialization code goes here	
 	
-//	if (TIME < 5.0 && INDEX > int(TIME * amount / 5.0)) {
-//		ACTIVE = false
+//	if (TIME < 500.0 && INDEX > int(TIME * amount / 500.0)) {
+//		ACTIVE = false;
 //	} else {
-//		ACTIVE = true
+//		ACTIVE = true;
 //	}
 	
 	uint alt_seed1 = hash(NUMBER + uint(1) + RANDOM_SEED);
@@ -46,11 +45,12 @@ void vertex() {
 	                     rand_from_seed(alt_seed3) * 2.0 - 1.0);
 	
 	TRANSFORM[3].xy = position.xy * 20.0;
-	TRANSFORM[3].z = max_height * -1.0 + (rand_from_seed(alt_seed4) * 5.0 - 1.0);
+	TRANSFORM[3].z = height * -1.0 + (rand_from_seed(alt_seed1) * 2.0 - 1.0);
 	
 	VELOCITY.z = init_vel;
   } else {
     //per-frame code goes here
 	VELOCITY.z += DELTA * gravity;
+	TRANSFORM[0].z = 1.0 + VELOCITY.z / 20.0;
   }
 }
