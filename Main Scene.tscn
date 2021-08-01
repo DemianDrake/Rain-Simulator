@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Rain-Simulator/Raindrop.shader" type="Shader" id=1]
-[ext_resource path="res://Rain-Simulator/mesh/raindrop.tres" type="CapsuleMesh" id=2]
-[ext_resource path="res://Rain-Simulator/Main.gd" type="Script" id=3]
+[ext_resource path="res://Raindrop.shader" type="Shader" id=1]
+[ext_resource path="res://mesh/raindrop.tres" type="CapsuleMesh" id=2]
+[ext_resource path="res://Main.gd" type="Script" id=3]
 
 [sub_resource type="ShaderMaterial" id=1]
 render_priority = 1
@@ -12,7 +12,7 @@ shader_param/gravity = 0.0
 shader_param/init_vel = null
 shader_param/amount = 0.0
 
-[sub_resource type="PlaneMesh" id=3]
+[sub_resource type="PlaneMesh" id=2]
 size = Vector2( 50, 50 )
 
 [node name="Spatial" type="Spatial"]
@@ -28,7 +28,7 @@ process_material = SubResource( 1 )
 draw_pass_1 = ExtResource( 2 )
 
 [node name="Floor" type="MeshInstance" parent="."]
-mesh = SubResource( 3 )
+mesh = SubResource( 2 )
 material/0 = null
 
 [node name="Camera" type="Camera" parent="."]

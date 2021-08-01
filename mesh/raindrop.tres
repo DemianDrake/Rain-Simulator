@@ -1,6 +1,6 @@
 [gd_resource type="CapsuleMesh" load_steps=2 format=2]
 
-[ext_resource path="res://Rain-Simulator/materials/raindrop_mat.tres" type="Material" id=1]
+[ext_resource path="res://materials/raindrop_mat.tres" type="Material" id=1]
 
 [resource]
 material = ExtResource( 1 )
