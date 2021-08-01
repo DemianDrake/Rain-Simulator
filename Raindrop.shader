@@ -51,6 +51,6 @@ void vertex() {
   } else {
     //per-frame code goes here
 	VELOCITY.z += DELTA * gravity;
-	TRANSFORM[0].z = 1.0 + VELOCITY.z / 20.0;
+	TRANSFORM[0].z = 1.0 + VELOCITY.z / 10.0;
   }
 }

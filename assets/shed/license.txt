@@ -1,0 +1,11 @@
+Model Information:
+* title:	Sheep shed
+* source:	https://sketchfab.com/3d-models/sheep-shed-024cd7a8d35147c8b3e3064685c6bf4b
+* author:	Maria Stashko (https://sketchfab.com/maria_stashko)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Sheep shed" (https://sketchfab.com/3d-models/sheep-shed-024cd7a8d35147c8b3e3064685c6bf4b) by Maria Stashko (https://sketchfab.com/maria_stashko) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
