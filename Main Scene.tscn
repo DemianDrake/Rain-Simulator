@@ -11,6 +11,8 @@ shader_param/height = null
 shader_param/gravity = 0.0
 shader_param/init_vel = null
 shader_param/amount = 0.0
+shader_param/wind_direction_angle = null
+shader_param/wind_power = null
 
 [sub_resource type="PlaneMesh" id=2]
 size = Vector2( 50, 50 )

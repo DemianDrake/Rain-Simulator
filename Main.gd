@@ -7,6 +7,10 @@ export var max_amount = 1000
 export var init_vel = 0.0
 export var height = 20.0
 
+export var wind_direction_angle = 150.0;
+export var wind_power = 4.0;
+
+
 onready var g = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
@@ -14,6 +18,9 @@ func _ready():
 	shader_material.set_shader_param("amount", rain.amount)
 	shader_material.set_shader_param("height", height)
 	shader_material.set_shader_param("init_vel", init_vel)
+	shader_material.set_shader_param("wind_direction_angle", wind_direction_angle)
+	shader_material.set_shader_param("wind_power", wind_power)
+
 	rain.lifetime = (sqrt(init_vel * init_vel + (2 * g * height)) - init_vel) / g
 	rain.amount = max_amount
 	rain.explosiveness = 0.0
