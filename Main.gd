@@ -10,6 +10,10 @@ export var init_vel = 0.0
 export var height = 20.0
 export var speed = 5.0
 
+export var wind_direction_angle = 150.0;
+export var wind_power = 4.0;
+
+
 onready var g = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var humidity = 0.0
@@ -21,8 +25,14 @@ func _ready():
 	shader_material.set_shader_param("amount", rain.amount)
 	shader_material.set_shader_param("height", height)
 	shader_material.set_shader_param("init_vel", init_vel)
+	
 	cycle = (sqrt(init_vel * init_vel + (2 * g * height)) - init_vel) / g
 	rain.lifetime = cycle
+	shader_material.set_shader_param("wind_direction_angle", wind_direction_angle)
+	shader_material.set_shader_param("wind_power", wind_power)
+
+	rain.lifetime = (sqrt(init_vel * init_vel + (2 * g * height)) - init_vel) / g
+	origin/vg_rain
 	rain.amount = max_amount
 	rain.explosiveness = 0.0
 	rain.emitting = true
