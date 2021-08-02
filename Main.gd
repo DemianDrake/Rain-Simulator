@@ -1,5 +1,6 @@
 extends Spatial
 
+onready var control = $Control
 onready var rain = $Rain
 onready var ground = $Floor.get_active_material(0)
 onready var shader_material = rain.process_material
@@ -7,6 +8,7 @@ onready var shader_material = rain.process_material
 export var max_amount = 1000
 export var init_vel = 0.0
 export var height = 20.0
+export var speed = 5.0
 
 onready var g = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -25,6 +27,7 @@ func _ready():
 	rain.explosiveness = 0.0
 	rain.emitting = true
 	ground.set_shader_param("blend_raining", 0.0)
+	control.linear_vel = speed
 
 func _process(delta):
 	timer += delta
