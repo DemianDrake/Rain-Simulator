@@ -22,8 +22,8 @@ mat3 rotationMatrix(vec3 axis, float angle)
     float c = cos(angle);
     float oc = 1.0 - c;
 
-    return mat3(vec3(oc * axis.x * axis.x + c,           oc * axis.x * axis.y - axis.z * s,  oc * axis.z * axis.x + axis.y * s),
-                vec3(oc * axis.x * axis.y + axis.z * s,  oc * axis.y * axis.y + c,           oc * axis.y * axis.z - axis.x * s),
+    return mat3(vec3(oc * axis.x * axis.x + c, oc * axis.x * axis.y - axis.z * s, oc * axis.z * axis.x + axis.y * s),
+                vec3(oc * axis.x * axis.y + axis.z * s,  oc * axis.y * axis.y + c, oc * axis.y * axis.z - axis.x * s),
                 vec3(oc * axis.z * axis.x - axis.y * s,  oc * axis.y * axis.z + axis.x * s,  oc * axis.z * axis.z + c));
 }
 
@@ -85,7 +85,7 @@ void vertex() {
 	TRANSFORM[2].xyz = model[2];
 
 	
-	TRANSFORM[3].xy = position.xy * 20.0;
+	TRANSFORM[3].xy = position.xy * 80.0;
 	TRANSFORM[3].z = height * -1.0 + (rand_from_seed(alt_seed1) * 2.0 - 1.0);
 	
 	VELOCITY.z = init_vel;
@@ -93,22 +93,21 @@ void vertex() {
     //per-frame code goes here
 	float prev_vel_z = VELOCITY.z;
 	VELOCITY.z += DELTA * gravity;
-	TRANSFORM[0].z = 1.0 + VELOCITY.z / 10.0;
+	//TRANSFORM[0].z = 1.0 + VELOCITY.z / 10.0;
 	
 	// windy stuff
 	float rad = deg_to_rad(wind_direction_angle);
 	vec2 wind_direction = vec2(cos(rad), sin(rad));
 	VELOCITY.xy += DELTA * wind_power * wind_direction;
 
+	if (prev_vel_z < VELOCITY.z) {
+		vec3 rot_transform = TRANSFORM[2].xyz;
+		if (prev_vel_z > 0.00001){
+			rot_transform /= prev_vel_z;
+		}
 
-	vec3 rot_transform = TRANSFORM[2].xyz;
-	if (prev_vel_z > 0.00001){
-		rot_transform /= prev_vel_z;
+		// scaling by actual velocity
+		TRANSFORM[2].xyz = rot_transform * VELOCITY.z / 1.01;
 	}
-
-	// scaling by actual velocity
-	TRANSFORM[2].xyz = rot_transform * VELOCITY.z / 1.01;
-
-	origin/vg_rain
   }
 }
